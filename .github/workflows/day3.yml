@@ -1,0 +1,25 @@
+name: "Day 3 - Jobs Deep Dive"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Take Backup
+        run: echo "Taking backup..."
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: backup
+    steps:
+      - name: Deploy Update
+        run: echo "Deploying update..."
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Smoke Test
+        run: echo "Running smoke test..."
