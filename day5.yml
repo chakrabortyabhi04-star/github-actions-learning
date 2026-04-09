@@ -1,0 +1,39 @@
+name: "Day 5 - Runners Deep Dive"
+
+on:
+
+  workflow_dispatch:
+
+jobs:
+
+  linux-job:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check OS
+
+        run: echo "Running on Linux!"
+
+  windows-job:
+
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Check OS
+
+        shell: powershell
+
+        run: Write-Output "Running on Windows!"
+
+  mac-job:
+
+    runs-on: macos-latest
+
+    steps:
+
+      - name: Check OS
+
+        run: echo "Running on macOS!"
