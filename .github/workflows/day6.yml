@@ -1,0 +1,26 @@
+name: "Day 6 - Environment Variables"
+on:
+  workflow_dispatch:
+# 1. Global (Workflow) Level - available to all jobs
+env:
+  APP_NAME: "MyApp"
+  APP_VERSION: "2.0"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # 2. Job Level - available only to this job
+    env:
+      SERVER_URL: "prod.myapp.com"
+      
+    steps:
+      - name: Print App Info
+        # Note: No space between $ and the variable name
+        run: |
+          echo "App: $APP_NAME"
+          echo "Version: $APP_VERSION"
+          echo "Server: $SERVER_URL"
+      - name: Step Level Variable
+        # 3. Step Level - available only to THIS step
+        env:
+          TIMEOUT: "30"
+        run: echo "Timeout is $TIMEOUT"
