@@ -19,7 +19,7 @@ jobs:
       - name: Use API Key/URL
         env:
           # Non-sensitive config belongs in 'vars'
-          MY_API_KEY: ${{ vars.API_KEY }}
+          MY_API_KEY: ${{ secrets.API_KEY }}
         run: |
           echo "Calling API..."
          
