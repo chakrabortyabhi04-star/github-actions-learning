@@ -1,0 +1,17 @@
+name: "Day 4 - Steps Deep Dive"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  explore-steps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download my code
+        uses: actions/checkout@v4
+
+      - name: Show files on Runner
+        run: ls -la
+
+      - name: Print a message
+        run: echo "Steps Deep Dive Complete!"
