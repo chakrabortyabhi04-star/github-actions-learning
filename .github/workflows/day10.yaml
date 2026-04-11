@@ -1,0 +1,53 @@
+name: "Day 10 - Phase 1 Mini Project"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  APP_NAME: first_app
+  ENVIRONMENT: "production"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Validate code
+        run: |
+          echo "Validating $APP_NAME..."
+          echo "Checking syntax..."
+          echo "Validation passed!"
+
+  builds:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Build application
+        run: |
+          echo "Building $APP_NAME..."
+          echo "Build successful!"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: builds
+    env:
+      DEPLOY_PASSWORD: ${{ secrets.DB_PASSWORD }}
+    steps:
+      - name: Deploy application
+        run: |
+          echo "Deploying $APP_NAME to $ENVIRONMENT..."
+          echo "Using password: $DEPLOY_PASSWORD"
+          echo "Deploy successful!"
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: always()
+    steps:
+      - name: Send notification
+        run: echo "Pipeline complete! $APP_NAME deployed!"
