@@ -1,0 +1,26 @@
+name: "Day 9 - Reading Logs"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fast step
+        run: echo "I finish quickly!"
+
+      - name: Slow step
+        run: |
+          echo "Starting slow task..."
+          sleep 5
+          echo "Slow task done!"
+
+  job-two:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check disk space
+        run: df -h
+      
+      - name: Check memory
+        run: free -h
