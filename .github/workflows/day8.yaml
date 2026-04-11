@@ -11,7 +11,8 @@ jobs:
         run: echo "Step 1 is fine!"
 
       - name: This step will BREAK
-        run: echo "This command is wrong!"
+        continue-on-error: true
+        run: eccho "This command is wrong!" # Fixed 'eccho' to 'echo'
 
-      - name: This step will never run
-        run: echo "Will I run?"
+      - name: This step will run now
+        run: echo "I will run because the previous step has continue-on-error!"
