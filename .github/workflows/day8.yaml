@@ -11,7 +11,7 @@ jobs:
         run: echo "Step 1 is fine!"
 
       - name: This step will BREAK
-        run: eccho "This command is wrong!"
+        run: echo "This command is wrong!"
 
       - name: This step will never run
         run: echo "Will I run?"
