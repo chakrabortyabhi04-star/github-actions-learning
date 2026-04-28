@@ -1,0 +1,40 @@
+name: Day 16 - Upload Download Artifacts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create zip package
+        run: zip app.zip hello.py test_hello.py
+
+      - name: Upload multiple artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-app
+          path: |
+            app.zip.zip
+            requirements.txt
+          retention-days: 7
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: python-app
+          path: ./downloaded
+
+      - name: List downloaded files
+        run: ls -la ./downloaded
