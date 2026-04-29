@@ -1,9 +1,12 @@
 name: Day 17 - Status Checks
 
 on:
-  push:                
+  push:
     branches:
-      - main          
+      - main
+  pull_request:
+    branches:
+      - main      
 
 jobs:
   lint:
