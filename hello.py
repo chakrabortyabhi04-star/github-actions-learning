@@ -1,5 +1,5 @@
 def greet(name):
-    return "Hello " + name
-                         
-    
+    return "Hello " + name                         
+
+
 print(greet("DevOps"))
