@@ -34,4 +34,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build artifact
-        run: zip app.zip app.py
+        run: zip app.zip hello.py
