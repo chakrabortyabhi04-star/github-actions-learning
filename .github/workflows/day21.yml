@@ -1,0 +1,21 @@
+name: Day 21 — SSH deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.host }}
+          username: ${{ vars.user_name }}
+          key: ${{ secrets.ssh_key }}
+          script: |
+            cp app.zip /var/www/
+            sudo systemctl restart myapp
